@@ -1,8 +1,6 @@
 # InterpLinks1.0
 
 
-# InterpLinks
-
 InterpLinks is a Flask application to connect client of foreign language with interpreters on any language
 
 ## Development Environment
