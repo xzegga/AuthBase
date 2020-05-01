@@ -16,9 +16,6 @@ At the bare minimum you'll need the following for your development environment:
 It is strongly recommended to also install and use the following tools:
 
 1. [virtualenv](https://python-guide.readthedocs.org/en/latest/dev/virtualenvs/#virtualenv)
-2. [virtualenvwrapper](https://python-guide.readthedocs.org/en/latest/dev/virtualenvs/#virtualenvwrapper)
-3. [Vagrant](http://vagrantup.com)
-3. [Berkshelf](http://berkshelf.com)
 
 ### Local Setup
 
