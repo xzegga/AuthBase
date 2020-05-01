@@ -73,9 +73,3 @@ Management commands can be listed with the following command:
 
 These can sometimes be useful to manipulate data while debugging in the browser.
 
-
-#### Tests
-
-To run the tests use the following command:
-
-    $ nosetests
