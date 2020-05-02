@@ -20,7 +20,9 @@ def register_blueprints(app, package_name, package_path):
     :param package_path: the package path
     """
     rv = []
+    
     for _, name, _ in pkgutil.iter_modules(package_path):
+        print(_, name, _ )
         m = importlib.import_module('%s.%s' % (package_name, name))
         for item in dir(m):
             item = getattr(m, item)

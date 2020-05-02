@@ -1,18 +1,15 @@
 # -*- coding: utf-8 -*-
 """
-    tlinks.api.users
+    tlinks.users
     ~~~~~~~~~~~~~~~~~~
     User endpoints
 """
-
-from flask import Blueprint
 from flask_login import current_user
-
 from ..services import users
-from . import route
+from .. import route
+from flask import Blueprint
 
 bp = Blueprint('users', __name__, url_prefix='/users')
-
 
 @route(bp, '/')
 def whoami():

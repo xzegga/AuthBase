@@ -6,7 +6,6 @@
 """
 
 from flask_security import UserMixin, RoleMixin
-
 from ..core import db
 from ..helpers import JsonSerializer
 

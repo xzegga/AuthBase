@@ -9,7 +9,8 @@ from .models import User, Role
 
 def create_app(package_name, package_path, settings_override=None,
                register_security_blueprint=True):
-    """Returns a :class:`Flask` application instance configured with common
+    """
+    Returns a :class:`Flask` application instance configured with common
     functionality for the tlinks platform.
     :param package_name: application package name
     :param package_path: application package path

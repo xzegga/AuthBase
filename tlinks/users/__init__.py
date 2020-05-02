@@ -5,9 +5,5 @@
     tlinks users package
 """
 
-from ..core import Service
-from .models import User
-
-
-class UsersService(Service):
-    __model__ = User
+from .routes import *
+from .services import UsersService
