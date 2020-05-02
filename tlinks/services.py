@@ -4,7 +4,7 @@
     ~~~~~~~~~~~~~~~~~
     services module
 """
-from .users import UsersService
+from .users.services import UsersService
 
 #: An instance of the :class:`UsersService` class
 users = UsersService()
