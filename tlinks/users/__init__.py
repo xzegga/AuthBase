@@ -14,7 +14,6 @@ bp = Blueprint('users', __name__, url_prefix='/users')
 @route(bp, '/')
 def whoami():
     """Returns the user instance of the currently authenticated user."""    
-    return {'json': 'response'}
     return current_user._get_current_object()
 
 
