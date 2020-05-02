@@ -6,7 +6,7 @@
 """
 from flask_login import current_user
 from ..services import users
-from .. import route
+from ..router import route
 from flask import Blueprint
 
 bp = Blueprint('users', __name__, url_prefix='/users')

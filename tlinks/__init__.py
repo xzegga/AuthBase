@@ -4,10 +4,7 @@
     ~~~~~~~~
     tlinks1.0 application package
 """
-from functools import wraps
-
 from flask import jsonify
-from flask_security import login_required
 
 from .core import AppError, AppFormError
 from .helpers import JSONEncoder
@@ -30,23 +27,6 @@ def create_app(settings_override=None, register_security_blueprint=False):
     return api
 
 
-def route(bp, *args, **kwargs):
-    kwargs.setdefault('strict_slashes', False)
-
-    def decorator(f):
-        @bp.route(*args, **kwargs)
-        @login_required
-        @wraps(f)
-        def wrapper(*args, **kwargs):
-            sc = 200
-            rv = f(*args, **kwargs)
-            if isinstance(rv, tuple):
-                sc = rv[1]
-                rv = rv[0]
-            return jsonify(dict(data=rv)), sc
-        return f
-
-    return decorator
 
 
 def on_app_error(e):
@@ -59,6 +39,3 @@ def on_app_form_error(e):
 
 def on_404(e):
     return jsonify(dict(error='Not found')), 404
-
-
-app = create_app()
