@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-    tlinks.helpers
+    main.helpers
     ~~~~~~~~~~~~~~~~
-    tlinks helpers module
+    main helpers module
 """
 
 import pkgutil

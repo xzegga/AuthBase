@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-    tlinks.middleware
+    main.middleware
     ~~~~~~~~~~~~~~~~~~~
     middleware module
 """

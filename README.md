@@ -51,7 +51,7 @@ This application uses [Alembic](http://alembic.readthedocs.org/) for database
 migrations and schema management. Changes or additions to the application data
 models will require the database be updated with the new tables and fields.
 Additionally, ensure that any new models are imported into the consolidated
-models file at `tlinks.models`. To generate a migration file based on the
+models file at `main.models`. To generate a migration file based on the
 current set of models run the following command:
 
     $ alembic revision --autogenerate -m "<a description of what was modified>"

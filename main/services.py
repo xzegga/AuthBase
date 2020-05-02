@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-    tlinks.services
+    main.services
     ~~~~~~~~~~~~~~~~~
     services module
 """

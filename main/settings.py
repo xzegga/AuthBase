@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-    tlinks.settings
+    main.settings
     ~~~~~~~~~~~~~~~
-    tlinks settings module
+    main settings module
 """
 import os
 

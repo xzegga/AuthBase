@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-    tlinks.manage
+    main.manage
     ~~~~~~~~~~~~~~~
-    tlinks manager package
+    main manager package
 """
 
 from .users import *

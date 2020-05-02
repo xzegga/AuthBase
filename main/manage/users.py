@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-    tlinks.manage.users
+    main.manage.users
     ~~~~~~~~~~~~~~~~~~~~~
     user management commands
 """

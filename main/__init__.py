@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-    tlinks
+    main
     ~~~~~~~~
-    tlinks1.0 application package
+    main1.0 application package
 """
 from flask import jsonify
 
@@ -11,7 +11,7 @@ from .helpers import JSONEncoder
 from . import factory
 
 def create_app(settings_override=None, register_security_blueprint=False):
-    """Returns the tlinks API application instance"""
+    """Returns the main API application instance"""
 
     api = factory.create_app(__name__, __path__, settings_override,
                              register_security_blueprint=register_security_blueprint)

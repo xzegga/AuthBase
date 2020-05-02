@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-    tlinks.users
+    main.users
     ~~~~~~~~~~~~~~
-    tlinks users package
+    main users package
 """
 from flask_login import current_user
 from ..services import users

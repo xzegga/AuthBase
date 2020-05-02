@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-    tlinks.users.models
+    main.users.models
     ~~~~~~~~~~~~~~~~~~~~~
     User models
 """

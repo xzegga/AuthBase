@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-    tlinks.core
+    main.core
     ~~~~~~~~~~~~~
-    tlinks core module
+    main core module
 """
 
 from flask_mail import Mail

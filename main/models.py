@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-    tlinks.models
+    main.models
     ~~~~~~~~~~~~~~~
     consolidated models module
 """
