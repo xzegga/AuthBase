@@ -20,9 +20,10 @@ def create_app(package_name, package_path, settings_override=None,
     """
     app = Flask(package_name, instance_relative_config=True)
 
-    app.config.from_object('main.settings.DevelopementConfig')
-    
-    print(app.config['SECRET_KEY'])
+    # Set app variables based in the environment
+    app.config.from_object('main.settings.DevelopementConfig')    
+
+    # Override setting with settings_override values
     app.config.from_object(settings_override)
     
     # Initialize a local database for the example
@@ -37,9 +38,10 @@ def create_app(package_name, package_path, settings_override=None,
     # Initialize the flask-praetorian instance for the app
     guard.init_app(app, User)
 
-
+    # Registre all blueprints in the package_name
     register_blueprints(app, package_name, package_path)
 
+    # Apply middleware to support every HTTP method in old browsers
     app.wsgi_app = HTTPMethodOverrideMiddleware(app.wsgi_app)
 
     return app

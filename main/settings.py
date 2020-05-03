@@ -9,7 +9,7 @@ import os
 class Config(object):
   DEBUG = False
   MAIL_DEFAULT_SENDER = 'raul.escamilla@asesoriait.com'
-  SECRET_KEY = 'Aplicación de Tlinks 1.0 para Translationlinks.com © 2020'
+  SECRET_KEY = os.environ.get('SECRET_KEY')
   MAIL_SERVER = 'smtp.gmail.com'
   MAIL_PORT = 25
   MAIL_USE_TLS = True
@@ -32,7 +32,7 @@ class ProductionConfig(Config):
 
 class DevelopementConfig(Config):
   DEBUG = True    
-  SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:I4HoEDfPq5i9ugoP@127.0.0.1:3306/interplinks_master'
+  SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI')
 
 class TestingConfig(Config): 
   TESTING: True
