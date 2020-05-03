@@ -5,7 +5,6 @@ from .middleware import HTTPMethodOverrideMiddleware
 from .models import User
 from .settings import DevelopementConfig, ProductionConfig, TestingConfig
 
-
 def create_app(package_name, package_path, settings_override=None,
                register_security_blueprint=True):
     """
@@ -22,6 +21,8 @@ def create_app(package_name, package_path, settings_override=None,
 
     # Set app variables based in the environment
     app.config.from_object('main.settings.DevelopementConfig')    
+
+    print(app.config.get('DEBUG'))
 
     # Override setting with settings_override values
     app.config.from_object(settings_override)

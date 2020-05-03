@@ -4,18 +4,21 @@
     ~~~~~~~~~~~~~~~
     main settings module
 """
+from dotenv import load_dotenv
+load_dotenv()
+
 import os
 
 class Config(object):
-  DEBUG = False
-  MAIL_DEFAULT_SENDER = 'raul.escamilla@asesoriait.com'
+  DEBUG = False    
+  MAIL_DEFAULT_SENDER = os.environ.get('MAIL_DEFAULT_SENDER')
   SECRET_KEY = os.environ.get('SECRET_KEY')
+  SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI')
   MAIL_SERVER = 'smtp.gmail.com'
   MAIL_PORT = 25
   MAIL_USE_TLS = True
-  MAIL_USERNAME = 'raul.escamilla@asesoriait.com'
-  MAIL_PASSWORD = ''
-
+  MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
+  MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
   SECURITY_POST_LOGIN_VIEW = '/'
   SECURITY_PASSWORD_HASH = 'plaintext'
   SECURITY_PASSWORD_SALT = 'password_salt'
@@ -32,7 +35,6 @@ class ProductionConfig(Config):
 
 class DevelopementConfig(Config):
   DEBUG = True    
-  SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI')
 
 class TestingConfig(Config): 
   TESTING: True
