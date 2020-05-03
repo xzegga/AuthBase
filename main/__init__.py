@@ -27,8 +27,6 @@ def create_app(settings_override=None, register_security_blueprint=False):
     return api
 
 
-
-
 def on_app_error(e):
     return jsonify(dict(error=e.msg)), 400
 

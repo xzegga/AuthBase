@@ -4,52 +4,54 @@
     ~~~~~~~~~~~~~~~~~~~~~
     User models
 """
-
-from flask_security import UserMixin, RoleMixin
 from ..core import db
 from ..helpers import JsonSerializer
 
 
-roles_users = db.Table(
-    'roles_users',
-    db.Column('user_id', db.Integer(), db.ForeignKey('users.id')),
-    db.Column('role_id', db.Integer(), db.ForeignKey('roles.id')))
-
-
-class Role(RoleMixin, db.Model):
-    __tablename__ = 'roles'
-
-    id = db.Column(db.Integer(), primary_key=True)
-    name = db.Column(db.String(80), unique=True)
-    description = db.Column(db.String(255))
-
-    def __eq__(self, other):
-        return (self.name == other or
-                self.name == getattr(other, 'name', None))
-
-    def __ne__(self, other):
-        return (self.name != other and
-                self.name != getattr(other, 'name', None))
-
-
 class UserJsonSerializer(JsonSerializer):
-    __json_public__ = ['id', 'email']
+  #'phone_number', 'address_1', 'address_2', 'address_3', 'country', 'state', 'zipcode'
+  __json_public__ = ['id', 'username', 'first_name', 'last_name']
 
 
-class User(UserJsonSerializer, UserMixin, db.Model):
-    __tablename__ = 'users'
+class User(UserJsonSerializer, db.Model):
+  __tablename__ = 'users'
 
-    id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(255), unique=True)
-    password = db.Column(db.String(120))
-    active = db.Column(db.Boolean())
-    confirmed_at = db.Column(db.DateTime())
-    last_login_at = db.Column(db.DateTime())
-    current_login_at = db.Column(db.DateTime())
-    last_login_ip = db.Column(db.String(100))
-    current_login_ip = db.Column(db.String(100))
-    login_count = db.Column(db.Integer)
-    registered_at = db.Column(db.DateTime())
+  id = db.Column(db.Integer, primary_key=True)
+  username = db.Column(db.String(255), index=True, unique=True)
+  password = db.Column(db.String(256))
+  first_name = db.Column(db.String(120))    
+  last_name = db.Column(db.String(120))   
+  phone_number = db.Column(db.String(20)) 
+  address_1 = db.Column(db.String(120))  
+  address_2 = db.Column(db.String(120))  
+  address_3 = db.Column(db.String(120))  
+  country = db.Column(db.String(120))  
+  state = db.Column(db.String(120))  
+  zipcode = db.Column(db.String(5))  
+  is_active = db.Column(db.Boolean, default=True, server_default='true')
+  last_login_at = db.Column(db.DateTime())
+  registered_at = db.Column(db.DateTime())
+  roles = db.Column(db.Text)
 
-    roles = db.relationship('Role', secondary=roles_users,
-                            backref=db.backref('users', lazy='dynamic'))
+  @property
+  def rolenames(self):
+      try:
+          return self.roles.split(',')
+      except Exception:
+          return []
+
+  @classmethod
+  def lookup(cls, username):
+      return cls.query.filter_by(username=username).one_or_none()
+
+  @classmethod
+  def identify(cls, id):
+      return cls.query.get(id)
+
+  @property
+  def identity(self):
+      return self.id
+
+  def is_valid(self):
+      return self.is_active
+

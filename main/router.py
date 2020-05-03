@@ -1,14 +1,13 @@
 from flask import jsonify
-from flask_security import login_required
 from functools import wraps
-
+import flask_praetorian
 
 def route(bp, *args, **kwargs):
     kwargs.setdefault('strict_slashes', False)
 
     def decorator(f):
         @bp.route(*args, **kwargs)
-        @login_required
+        @flask_praetorian.auth_required
         @wraps(f)
         def wrapper(*args, **kwargs):
             sc = 200

@@ -7,7 +7,8 @@
 
 from flask_mail import Mail
 from flask_sqlalchemy import SQLAlchemy
-from flask_security import Security
+from flask_praetorian import Praetorian
+import flask_cors
 
 #: Flask-SQLAlchemy extension instance
 db = SQLAlchemy()
@@ -15,9 +16,10 @@ db = SQLAlchemy()
 #: Flask-Mail extension instance
 mail = Mail()
 
-#: Flask-Security extension instance
-security = Security()
+#: Flask-Preatorian extension instance
+guard = Praetorian()
 
+cors = flask_cors.CORS()
 
 class AppError(Exception):
     """Base application error class."""

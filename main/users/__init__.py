@@ -4,7 +4,6 @@
     ~~~~~~~~~~~~~~
     main users package
 """
-from flask_login import current_user
 from ..services import users
 from ..router import route
 from flask import Blueprint
@@ -14,7 +13,7 @@ bp = Blueprint('users', __name__, url_prefix='/users')
 @route(bp, '/')
 def whoami():
     """Returns the user instance of the currently authenticated user."""    
-    return current_user._get_current_object()
+    return users.all()
 
 
 @route(bp, '/<user_id>')

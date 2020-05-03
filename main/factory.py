@@ -1,17 +1,16 @@
 from flask import Flask
-from flask_security import SQLAlchemyUserDatastore
-
-from .core import db, mail, security
+from .core import db, mail, guard, cors
 from .helpers import register_blueprints
 from .middleware import HTTPMethodOverrideMiddleware
-from .models import User, Role
+from .models import User
+from .settings import DevelopementConfig, ProductionConfig, TestingConfig
 
 
 def create_app(package_name, package_path, settings_override=None,
                register_security_blueprint=True):
     """
     Returns a :class:`Flask` application instance configured with common
-    functionality for the tlinks platform.
+    functionality for the main platform.
     :param package_name: application package name
     :param package_path: application package path
     :param settings_override: a dictionary of settings to override
@@ -21,23 +20,23 @@ def create_app(package_name, package_path, settings_override=None,
     """
     app = Flask(package_name, instance_relative_config=True)
 
-    if app.config['ENV'] == 'production':      
-        app.config.from_object('tlinks.settings.ProductionConfig')
-
-    elif app.config['ENV'] == 'testing':        
-        app.config.from_object('tlinks.settings.TestingConfig')
-
-    else:        
-        app.config.from_object('tlinks.settings.DevelopementConfig')
-
-    # app.config.from_pyfile('settings.cfg', silent=True)
+    app.config.from_object('main.settings.DevelopementConfig')
     
+    print(app.config['SECRET_KEY'])
     app.config.from_object(settings_override)
-
+    
+    # Initialize a local database for the example
     db.init_app(app)
+
+    # Initializes CORS so that the api_tool can talk to the example app
+    cors.init_app(app)
+
+    # Initializes Mail instance
     mail.init_app(app)
-    security.init_app(app, SQLAlchemyUserDatastore(db, User, Role),
-                      register_blueprint=register_security_blueprint)
+
+    # Initialize the flask-praetorian instance for the app
+    guard.init_app(app, User)
+
 
     register_blueprints(app, package_name, package_path)
 
