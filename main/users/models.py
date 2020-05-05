@@ -26,7 +26,7 @@ class User(UserJsonSerializer, db.Model):
   address_1 = db.Column(db.String(120))  
   address_2 = db.Column(db.String(120))  
   address_3 = db.Column(db.String(120))  
-  city = db.Column(db.String(120))  
+    city = db.Column(db.String(120))  
   country = db.Column(db.String(120))  
   state = db.Column(db.String(120))  
   zipcode = db.Column(db.String(5))  
