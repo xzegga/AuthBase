@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 91519ed0751f
+Revision ID: d5209511ab47
 Revises: 
-Create Date: 2020-05-02 22:16:30.833181
+Create Date: 2020-05-05 12:41:59.471430
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '91519ed0751f'
+revision = 'd5209511ab47'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -21,21 +21,22 @@ def upgrade():
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('username', sa.String(length=255), nullable=True),
-    sa.Column('password', sa.String(length=256), nullable=True),
-    sa.Column('first_name', sa.String(length=120), nullable=True),
-    sa.Column('last_name', sa.String(length=120), nullable=True),
-    sa.Column('user_type', sa.String(length=15), nullable=True),
+    sa.Column('password', sa.String(length=256), nullable=False),
+    sa.Column('first_name', sa.String(length=120), nullable=False),
+    sa.Column('last_name', sa.String(length=120), nullable=False),
     sa.Column('phone_number', sa.String(length=20), nullable=True),
+    sa.Column('skype', sa.String(length=35), nullable=True),
     sa.Column('address_1', sa.String(length=120), nullable=True),
     sa.Column('address_2', sa.String(length=120), nullable=True),
     sa.Column('address_3', sa.String(length=120), nullable=True),
+    sa.Column('city', sa.String(length=120), nullable=True),
     sa.Column('country', sa.String(length=120), nullable=True),
     sa.Column('state', sa.String(length=120), nullable=True),
     sa.Column('zipcode', sa.String(length=5), nullable=True),
     sa.Column('is_active', sa.Boolean(), server_default='true', nullable=True),
     sa.Column('last_login_at', sa.DateTime(), nullable=True),
     sa.Column('registered_at', sa.DateTime(), nullable=True),
-    sa.Column('roles', sa.Text(), nullable=True),
+    sa.Column('roles', sa.Text(), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_index(op.f('ix_users_username'), 'users', ['username'], unique=True)
