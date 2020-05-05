@@ -19,6 +19,7 @@ mail = Mail()
 #: Flask-Preatorian extension instance
 guard = Praetorian()
 
+# Cors instance to enable frontend remote request 
 cors = flask_cors.CORS()
 
 class AppError(Exception):
