@@ -11,6 +11,12 @@ from ..core import guard
 
 bp = Blueprint('users', __name__, url_prefix='/users')
 
+@bp.route('/register', methods=['POST'])
+def register():
+  data = request.get_json()
+  return users.register(data)
+
+
 @route(bp, '/')
 def whoami():
     """Returns the user instance of the currently authenticated user."""    
@@ -22,8 +28,3 @@ def show(user_id):
     """Returns a user instance."""
     return users.get_or_404(user_id)
 
-@bp.route('/register', methods=['POST'])
-def register(data):
-  data = request.get_json(data)
-  data['password'] = guard.encrypt_password(data['password'])
-  return users.create(data)

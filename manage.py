@@ -15,7 +15,9 @@ class create_users(Command):
   """Create a user"""
   
   def run(self):
-    company_user = User(username='raul.escamilla@asesoriait.com', password=guard.hash_password('super.super'), first_name='Raul', last_name='Escamilla', roles='company')
+    company_user = User(username='raul.escamilla@asesoriait.com', password=guard.hash_password('super.super'), 
+    
+    first_name='Raul', last_name='Escamilla', roles='company')
     interpreter_user = User(username='inversiones@asesoriait.com', password=guard.hash_password('super.super'), first_name='Alberto', last_name='Salinas', roles='interpreter')
     users.save(company_user)
     users.save(interpreter_user)

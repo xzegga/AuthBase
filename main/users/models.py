@@ -5,7 +5,7 @@
     User models
 """
 import datetime
-from ..core import db
+from ..core import db, guard
 from ..helpers import JsonSerializer
 
 
@@ -56,6 +56,7 @@ class User(UserJsonSerializer, db.Model):
   def identity(self):
       return self.id
 
+
   def is_valid(self):
-      return self.is_active
+    return self.is_active
 
