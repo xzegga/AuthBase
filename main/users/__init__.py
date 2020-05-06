@@ -22,7 +22,7 @@ def show(user_id):
     """Returns a user instance."""
     return users.get_or_404(user_id)
 
-@route(bp, '/register', methods=['POST'] )
+@bp.route('/register', methods=['POST'])
 def register(data):
   data = request.get_json(data)
   data['password'] = guard.encrypt_password(data['password'])

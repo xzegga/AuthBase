@@ -140,4 +140,4 @@ class Service(object):
         """
         self._isinstance(model)
         db.session.delete(model)
-        db.session.commit( )
+        db.session.commit()
