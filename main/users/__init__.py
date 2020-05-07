@@ -7,7 +7,6 @@
 from ..services import users
 from ..router import route
 from flask import Blueprint, request
-from ..core import guard
 
 bp = Blueprint('users', __name__, url_prefix='/users')
 
