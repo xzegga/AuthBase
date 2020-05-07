@@ -10,7 +10,7 @@ from ..router import route
 from flask import Blueprint, jsonify, request
 from ..core import guard
 
-bp = Blueprint('auth', __name__, url_prefix='/auth')
+bp = Blueprint('auth', __name__)
 
 @bp.route('/login')
 def login():

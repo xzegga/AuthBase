@@ -6,9 +6,15 @@
 """
 from ..services import users
 from ..router import route
-from flask import Blueprint
+from flask import Blueprint, request
 
 bp = Blueprint('users', __name__, url_prefix='/users')
+
+@bp.route('/register', methods=['POST'])
+def register():
+  data = request.get_json()
+  return users.register(data)
+
 
 @route(bp, '/')
 def whoami():
@@ -20,3 +26,4 @@ def whoami():
 def show(user_id):
     """Returns a user instance."""
     return users.get_or_404(user_id)
+
