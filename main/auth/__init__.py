@@ -27,3 +27,9 @@ def login():
 def show(user_id):
     """Returns a user instance."""
     return users.get_or_404(user_id)
+
+@bp.route('/forgot_pass', methods=['POST'])
+def emailCatch():
+  # get the post data
+  payload = request.get_json()
+  return users.sendForgotPass(payload)
