@@ -6,6 +6,7 @@ from .models import User
 import os
 from .settings import DevelopementConfig, ProductionConfig, TestingConfig
 
+
 def create_app(package_name, package_path, settings_override=None,
                register_security_blueprint=True):
     """
@@ -20,12 +21,12 @@ def create_app(package_name, package_path, settings_override=None,
     """
     app = Flask(package_name, instance_relative_config=True)
 
+   
     # Set app variables based in the environment
     app.config.from_object('main.settings.DevelopementConfig')
-    print(app.config['MAIL_USERNAME'])
 
     # Override setting with settings_override values
-    #app.config.from_object(settings_override)
+    # app.config.from_object(settings_override)
     
     # Initialize a local database for the example
     db.init_app(app)
@@ -35,8 +36,6 @@ def create_app(package_name, package_path, settings_override=None,
 
     # Initializes Mail instance
     mail.init_app(app)
-    
-    print(app.config['MAIL_USERNAME'])
 
     # Initialize the flask-praetorian instance for the app
     guard.init_app(app, User)

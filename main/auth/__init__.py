@@ -32,4 +32,4 @@ def show(user_id):
 def emailCatch():
   # get the post data
   payload = request.get_json()
-  return users.sendForgotPass(payload)
+  return users.request_password(payload)
