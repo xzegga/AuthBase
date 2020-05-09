@@ -12,6 +12,7 @@ bp = Blueprint('users', __name__, url_prefix='/users')
 
 @bp.route('/register', methods=['POST'])
 def register():
+  # get the post data
   data = request.get_json()
   return users.register(data)
 
