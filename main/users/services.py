@@ -30,13 +30,13 @@ class UsersService(Service):
     #try:    
     
     token = guard.encode_jwt_token(user)
-    print(token)
+    
     email_template = ForgotPasswordTemplate(token)
 
     mail.username = os.environ.get('MAIL_USERNAME')
     mail.password = os.environ.get('MAIL_PASSWORD')
 
-  
+    print(mail.username, mail.password)
 
     object_email = Message("Cambio de contraseña", recipients=["albertolinares001@gmail.com"])
     object_email.body = email_template['text']

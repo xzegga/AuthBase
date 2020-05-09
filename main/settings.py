@@ -20,7 +20,6 @@ class Config(object):
   MAIL_USE_SSL = True
   MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
   MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
-  FRONTED_URL = 'www.translationLinks.com'
   SECURITY_POST_LOGIN_VIEW = '/'
   SECURITY_PASSWORD_HASH = 'plaintext'
   SECURITY_PASSWORD_SALT = 'password_salt'
@@ -29,7 +28,7 @@ class Config(object):
   SECURITY_RESET_WITHIN = '5 days'
   SECURITY_CONFIRM_WITHIN = '5 days'
   SECURITY_SEND_REGISTER_EMAIL = False
-  COMPANY_LOGO = 'http://translationlinks.com/img/logo.png'
+  
 
 
 class ProductionConfig(Config):
@@ -41,3 +40,7 @@ class DevelopementConfig(Config):
 
 class TestingConfig(Config): 
   TESTING: True
+
+
+FRONTED_URL = 'www.translationLinks.com'
+COMPANY_LOGO = 'http://translationlinks.com/img/logo.png'

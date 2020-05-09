@@ -1,7 +1,7 @@
-from flask import current_app
-app = current_app
+from ..settings import FRONTED_URL, COMPANY_LOGO
 
-print(app.config)
+
+print()
 
 def ForgotPasswordTemplate(token):
     # Create the plain-text and HTML version of your message
@@ -32,5 +32,5 @@ def ForgotPasswordTemplate(token):
 
     </body>
     """
-    return {'text': message_text.format(app.config['FRONTEND_URL'], token), 
-            'html': message_html.format(app.config['FRONTEND_URL'], token, app.config['COMPANY_LOGO'])}
+    return {'text': message_text.format(FRONTED_URL, token), 
+            'html': message_html.format(FRONTED_URL, token, COMPANY_LOGO)}
