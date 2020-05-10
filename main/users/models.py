@@ -19,7 +19,8 @@ class User(UserJsonSerializer, db.Model):
 
   id = db.Column(db.Integer, primary_key=True)
   username = db.Column(db.String(255), index=True, unique=True)
-  password = db.Column(db.String(256), nullable=False)
+  password = db.Column(db.String(256), nullable=False)  
+  email = db.Column(db.String(120))
   first_name = db.Column(db.String(120), nullable=False)    
   last_name = db.Column(db.String(120), nullable=False)   
   phone_number = db.Column(db.String(20)) 
@@ -46,7 +47,9 @@ class User(UserJsonSerializer, db.Model):
 
   @classmethod
   def lookup(cls, username):
-      return cls.query.filter_by(username=username).one_or_none()
+    return cls.query.filter(((cls.username == username) | (cls.email == username))).one_or_none()
+
+    #return cls.query.filter_by(username=username).one_or_none()
 
   @classmethod
   def identify(cls, id):

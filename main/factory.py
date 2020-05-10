@@ -20,7 +20,6 @@ def create_app(package_name, package_path, settings_override=None,
                                         to `True`.
     """
     app = Flask(package_name, instance_relative_config=True)
-
    
     # Set app variables based in the environment
     app.config.from_object('main.settings.DevelopementConfig')
@@ -28,22 +27,23 @@ def create_app(package_name, package_path, settings_override=None,
     # Override setting with settings_override values
     # app.config.from_object(settings_override)
     
-    # Initialize a local database for the example
-    db.init_app(app)
+    with app.app_context():
+      # Initialize a local database for the example
+      db.init_app(app)
 
-    # Initializes CORS so that the api_tool can talk to the example app
-    cors.init_app(app)
+      # Initializes CORS so that the api_tool can talk to the example app
+      cors.init_app(app)
 
-    # Initializes Mail instance
-    mail.init_app(app)
+      # Initializes Mail instance
+      mail.init_app(app)
 
-    # Initialize the flask-praetorian instance for the app
-    guard.init_app(app, User)
+      # Initialize the flask-praetorian instance for the app
+      guard.init_app(app, User)
 
-    # Registre all blueprints in the package_name
-    register_blueprints(app, package_name, package_path)
+      # Registre all blueprints in the package_name
+      register_blueprints(app, package_name, package_path)
 
-    # Apply middleware to support every HTTP method in old browsers
-    app.wsgi_app = HTTPMethodOverrideMiddleware(app.wsgi_app)
-
-    return app
+      # Apply middleware to support every HTTP method in old browsers
+      app.wsgi_app = HTTPMethodOverrideMiddleware(app.wsgi_app)
+      
+      return app  
