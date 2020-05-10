@@ -4,9 +4,9 @@
     ~~~~~~~~~~~~~~~~~
     services module
 """
+from .auth.services import AuthService
 from .users.services import UsersService
 
-#: An instance of the :class:`UsersService` class
 users = UsersService()
-
-
+auth = AuthService()
+print(auth)

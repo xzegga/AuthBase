@@ -16,6 +16,7 @@ class Config(object):
   JWT_REFRESH_LIFESPAN = {'minutes': 5}
 
   PRAETORIAN_RESET_SENDER = os.environ.get('MAIL_USERNAME')
+  PRAETORIAN_CONFIRMATION_SENDER = os.environ.get('MAIL_USERNAME')
   PRAETORIAN_RESET_URI = 'https://www.translationLinks.com/reset-password'
   PRAETORIAN_RESET_SUBJECT = "Reset password request for InterpTlinks"
 

@@ -32,11 +32,10 @@ class User(UserJsonSerializer, db.Model):
   country = db.Column(db.String(120))  
   state = db.Column(db.String(120))  
   zipcode = db.Column(db.String(5))  
-  is_active = db.Column(db.Boolean, default=True, server_default='true')
+  is_active = db.Column(db.Boolean, default=False, server_default='false')
   last_login_at = db.Column(db.DateTime())
   registered_at = db.Column(db.DateTime(), default=datetime.datetime.utcnow)
   roles = db.Column(db.Text, nullable=False)
-
 
   @property
   def rolenames(self):

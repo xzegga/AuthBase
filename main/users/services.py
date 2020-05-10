@@ -1,24 +1,51 @@
 from ..core import Service, guard
 from flask_mail import Message
 from .models import User
-from flask import current_app, render_template
+from flask import current_app
 import os
 
 class UsersService(Service):
   __model__ = User
 
-  def hash_password(self, password):
-      return guard.hash_password(password)
 
-  def exist(self, email):
-    return self.first(username=email)
-
-
-  def signup(self, data):
-    if not self.exist(data['username']):
-      data['password'] = self.hash_password(data['password'])
-      return self.create(**data)
-    else:
+  def signup(self, req):
+    """
+      Registers a new user by parsing a POST request containing new user info
+    """    
+    if self.first(username=req['username']):
       return {'Error': 'User exist.'}, 400
+    
+    email = req.get('email', None)
+    req['password'] = guard.hash_password(req['password'])
+
+    new_user = self.create(**req)
+    guard.send_registration_email(
+      email, 
+      user=new_user,   
+      confirmation_sender = current_app.config.get('PRAETORIAN_CONFIRMATION_SENDER')      
+    )
+
+    ret = {'message': 'successfully sent registration email to user {}'.format(
+        new_user.username
+    )}
+
+    return ret, 201
 
 
+  def activate(self):
+    """
+      Activate registered user througth email confirmation token
+    """        
+    registration_token = guard.read_token_from_header()
+    user = guard.get_user_from_registration_token(registration_token)       
+    user.is_active = True
+
+    self.update(user)
+
+    ret = {'access_token': guard.encode_jwt_token(
+      user,
+      firstname=user.first_name,
+      lastname=user.last_name,
+    )}
+
+    return ret, 200
