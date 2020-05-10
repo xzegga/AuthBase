@@ -14,7 +14,7 @@ class UsersService(Service):
     return self.first(username=email)
 
 
-  def register(self, data):
+  def signup(self, data):
     if not self.exist(data['username']):
       data['password'] = self.hash_password(data['password'])
       return self.create(**data)
