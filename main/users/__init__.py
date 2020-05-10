@@ -12,7 +12,10 @@ bp = Blueprint('users', __name__, url_prefix='/users')
 
 @bp.route('/register', methods=['POST'])
 def register():
-  # get the post data
+  """
+    Registers a new user by parsing a POST request containing new user info and
+    dispatching an email with a registration token
+  """
   data = request.get_json()
   return users.register(data)
 
