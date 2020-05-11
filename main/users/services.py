@@ -51,9 +51,11 @@ class UsersService(Service):
     return ret, 200
 
   def update_password(self, user, password):
+    """
+    
+    """
     user.password = guard.hash_password(password)
     self.update(user)
-
     ret = {'message': 'Success'}
 
     return ret, 200
