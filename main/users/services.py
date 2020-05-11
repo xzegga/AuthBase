@@ -1,6 +1,4 @@
-import os
 from flask import current_app
-from flask_mail import Message
 from .models import User
 from ..core import Service, guard
 
