@@ -48,6 +48,7 @@ class ProductionConfig(Config):
 
 
 class DevelopementConfig(Config):
+  PYTHONPROFILEIMPORTTIME = 1
   DEBUG = True    
 
 class TestingConfig(Config): 

@@ -37,3 +37,5 @@ class AuthService():
     )
 
     return {"messasge": "A reset password e-mail has been sent to you. Please check your inbox"}, 200
+
+auth = AuthService()

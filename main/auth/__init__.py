@@ -5,7 +5,7 @@
     main auth package
 """
 
-from ..services import auth
+from .services import auth
 from ..router import route
 from flask import Blueprint, request
 

@@ -1,6 +1,7 @@
 from flask import current_app
-from .models import User
 from ..core import Service, guard
+from .models import User
+
 
 
 class UsersService(Service):
@@ -48,3 +49,5 @@ class UsersService(Service):
     )}
 
     return ret, 200
+
+users = UsersService()

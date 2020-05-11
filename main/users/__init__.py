@@ -5,7 +5,7 @@
     main users package
 """
 
-from ..services import users
+from .services import users
 from ..router import route
 from flask import Blueprint, request
 
