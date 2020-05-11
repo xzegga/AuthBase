@@ -59,4 +59,7 @@ class AuthService():
     return {"Message": "Password change success"}, 200
       
 
+  def logout(self):
+    pass
+
 auth = AuthService()
