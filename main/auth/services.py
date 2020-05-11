@@ -60,6 +60,9 @@ class AuthService():
       
 
   def logout(self):
+    """
+    
+    """
     pass
 
 auth = AuthService()
