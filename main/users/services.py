@@ -1,8 +1,9 @@
-from ..core import Service, guard
+import os
+from flask import current_app
 from flask_mail import Message
 from .models import User
-from flask import current_app
-import os
+from ..core import Service, guard
+
 
 class UsersService(Service):
   __model__ = User

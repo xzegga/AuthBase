@@ -1,8 +1,8 @@
+from flask import current_app
 from ..core import guard
 from ..templates import get_template
-from flask import current_app
 
-class AuthService(object):
+class AuthService():
   
   def signin(self, req):
     

@@ -9,6 +9,7 @@ from ..services import auth
 from ..router import route
 from flask import Blueprint, request
 
+
 bp = Blueprint('auth', __name__)
 
 @bp.route('/login', methods=['POST'])
