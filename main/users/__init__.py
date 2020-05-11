@@ -11,8 +11,8 @@ from flask import Blueprint, request
 
 bp = Blueprint('users', __name__, url_prefix='/users')
 
-@bp.route('/singup', methods=['POST'])
-def singup():
+@bp.route('/signup', methods=['POST'])
+def signup():
   """
   Registers a new user by parsing a POST request containing new user info and
   dispatching an email with a registration token

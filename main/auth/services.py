@@ -1,6 +1,7 @@
 from flask import current_app
 from ..core import guard
 from ..templates import get_template
+from ..users import users
 
 class AuthService():
   
@@ -28,14 +29,30 @@ class AuthService():
     return ret, 200
 
 
-  def request_password(self, req):
+  def password_request(self, req):
    
     guard.send_reset_email(
       req['email'], 
       reset_sender = current_app.config['MAIL_USERNAME'],
       template = get_template('emails/request_password')
     )
-
     return {"messasge": "A reset password e-mail has been sent to you. Please check your inbox"}, 200
+
+  
+  def verify_token(self, token):
+
+    guard.validate_reset_token(token)
+
+    return {"valid": "true"}, 200
+
+
+  def password_reset(self, req, token):
+    user = guard.validate_reset_token(token)
+    if user:
+      if req["new_password"] == req["password_confirm"]:
+        users.update_password(user, req["new_password"])
+
+    return {"Message": "Password change success"}, 200
+      
 
 auth = AuthService()

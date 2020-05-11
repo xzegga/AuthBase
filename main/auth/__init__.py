@@ -32,10 +32,27 @@ def refresh():
 
 
 @bp.route('/request-password', methods=['POST'])
-def request_reset_password():
+def request_password_reset():
   """
     Sends a password reset email to a user, containing a time expiring
     token usable for validation. 
   """
   req = request.get_json()  
-  return auth.request_password(req)
+  return auth.password_request(req)
+
+
+@bp.route('/validate_reset/<string:token>', methods=['POST'])
+def request_token(token):
+  """
+    
+  """ 
+  return auth.verify_token(token)
+
+
+@bp.route('/password_reset/<string:token>', methods=['POST'])
+def password_reset(token):
+  """
+    
+  """ 
+  req = request.get_json()
+  return auth.password_reset(req, token)

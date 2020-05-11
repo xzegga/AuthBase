@@ -13,7 +13,7 @@ class Config(object):
   DEBUG = False      
   SECRET_KEY = os.environ.get('SECRET_KEY')
   JWT_ACCESS_LIFESPAN = {'hours': 24}
-  JWT_REFRESH_LIFESPAN = {'minutes': 5}
+  JWT_REFRESH_LIFESPAN = {'minutes': 120}
 
   PRAETORIAN_RESET_SENDER = os.environ.get('MAIL_USERNAME')
   PRAETORIAN_CONFIRMATION_SENDER = os.environ.get('MAIL_USERNAME')
