@@ -1,8 +1,9 @@
 from flask import Flask
-from .core import db, mail, guard, cors
+from .core import db, mail, guard, cors, bl
 from .helpers import register_blueprints
 from .middleware import HTTPMethodOverrideMiddleware
-from .models import User
+from .models import User, Token
+from flask_blacklist import is_blacklisted
 import os
 from .settings import DevelopementConfig, ProductionConfig, TestingConfig
 
@@ -37,8 +38,10 @@ def create_app(package_name, package_path, settings_override=None,
       # Initializes Mail instance
       mail.init_app(app)
 
+      bl.init_app(app, Token)
+
       # Initialize the flask-praetorian instance for the app
-      guard.init_app(app, User)
+      guard.init_app(app, User, is_blacklisted)
 
       # Registre all blueprints in the package_name
       register_blueprints(app, package_name, package_path)

@@ -5,7 +5,7 @@ from flask.cli import with_appcontext
 
 from main.core import db, guard
 from main.models import User
-from main.services import users
+from main.users.services import users
 
 from main import create_app
 from flask_script import Manager, Command

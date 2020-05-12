@@ -7,6 +7,7 @@
 
 from .services import auth
 from ..router import route
+from ..core import guard
 from flask import Blueprint, request
 
 
@@ -56,3 +57,11 @@ def password_reset(token):
   """ 
   req = request.get_json()
   return auth.password_reset(req, token)
+
+
+@bp.route('/logout', methods=['DELETE'])
+def password_reset():
+  """
+    
+  """ 
+  return auth.invalid_token()
