@@ -1,7 +1,6 @@
 from flask import current_app
-from ..core import Service, guard
+from ..core import Service, guard, bl
 from ..templates import get_template
-from ..core import bl
 from ..users import users
 from .models import Token
 
@@ -51,7 +50,7 @@ class AuthService(Service):
 
     return {"valid": "true"}, 200
 
-  def password_reset(self, req, token):  
+  def password_match(self, req, token):  
     """
 
     """
@@ -63,7 +62,7 @@ class AuthService(Service):
     return {"Message": "Password change success"}, 200
 
 
-def invalid_token(self):
+  def invalid_token(self):
     token = guard.read_token_from_header()
     jti = guard.extract_jwt_token(token)["jti"]
     bl.blacklist_jti(jti)

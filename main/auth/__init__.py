@@ -56,11 +56,11 @@ def password_reset(token):
     
   """ 
   req = request.get_json()
-  return auth.password_reset(req, token)
+  return auth.password_match(req, token)
 
 
 @bp.route('/logout', methods=['DELETE'])
-def password_reset():
+def logoutAccount():
   """
     
   """ 
