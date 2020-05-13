@@ -1,12 +1,7 @@
 from ..core import db, guard
-from ..helpers import JsonSerializer
 
 
-class TokenJsonSerializer(JsonSerializer):
-  __json_public__ = ['id', 'jti']
-
-
-class Token(TokenJsonSerializer, db.Model):
+class Token(db.Model):
   __tablename__ = 'token'
 
   id = db.Column(db.Integer, primary_key=True)
@@ -14,9 +9,6 @@ class Token(TokenJsonSerializer, db.Model):
   
   def __init__(self, jti): 
     self.jti = jti 
-
-  def __repr__(self):
-    return "<Token '{}'>".format(self.jti)
 
 
   @classmethod
