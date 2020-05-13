@@ -20,4 +20,4 @@ class Token(db.Model):
     
   @classmethod
   def get_blacklisted(cls):
-    return [{'jti': token.jti} for token in  cls.query.all()]
+    return [token.to_json() for token in  cls.query.all()]
