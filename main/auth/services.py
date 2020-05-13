@@ -1,10 +1,13 @@
 from flask import current_app
-from ..core import guard
+from ..core import Service, guard, bl
 from ..templates import get_template
 from ..users import users
+from .models import Token
 
 
-class AuthService():
+
+class AuthService(Service):
+  __model__ = Token
 
   def signin(self, req):
 
@@ -47,7 +50,7 @@ class AuthService():
 
     return {"valid": "true"}, 200
 
-  def password_reset(self, req, token):  
+  def password_match(self, req, token):  
     """
 
     """
@@ -57,6 +60,14 @@ class AuthService():
         users.update_password(user, req["new_password"])
 
     return {"Message": "Password change success"}, 200
-      
+
+
+  def invalid_token(self):
+    token = guard.read_token_from_header()
+    jti = guard.extract_jwt_token(token)["jti"]
+    bl.blacklist_jti(jti)
+    rv, code = {"success": True, "message": "token invalidated"}, 200
+    return rv, code
+
 
 auth = AuthService()

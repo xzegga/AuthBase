@@ -8,16 +8,21 @@
 from flask_mail import Mail
 from flask_sqlalchemy import SQLAlchemy
 from flask_praetorian import Praetorian
+from flask_blacklist import Blacklist
 import flask_cors
 
 #: Flask-SQLAlchemy extension instance
 db = SQLAlchemy()
+
 
 #: Flask-Mail extension instance
 mail = Mail()
 
 #: Flask-Preatorian extension instance
 guard = Praetorian()
+
+# Flask-Blacklist extension instance
+bl = Blacklist()
 
 # Cors instance to enable frontend remote request 
 cors = flask_cors.CORS()
