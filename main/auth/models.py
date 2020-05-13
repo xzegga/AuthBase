@@ -1,20 +1,31 @@
 from ..core import db, guard
 from ..helpers import JsonSerializer
 
-class Token(db.Model):
-  __tablename__ = 'bl_token'
+
+class TokenJsonSerializer(JsonSerializer):
+  __json_public__ = ['id', 'jti']
+
+
+class Token(TokenJsonSerializer, db.Model):
+  __tablename__ = 'token'
 
   id = db.Column(db.Integer, primary_key=True)
-  token = db.Column(db.String(250))
+  jti = db.Column(db.String(250))
+  
+  def __init__(self, jti): 
+    self.jti = jti 
+
+  def __repr__(self):
+    return "<Token '{}'>".format(self.jti)
+
 
   @classmethod
   def blacklist_jti(cls, jti):
-    _me = cls()
-    _me.token = jti
-    db.session.add(_me)    
+    token = cls(jti)
+    db.session.add(token)    
     db.session.commit()
-    return cls
+    return token
     
   @classmethod
   def get_blacklisted(cls):
-    return cls.query.all()
+    return [{'jti': token.jti} for token in  cls.query.all()]

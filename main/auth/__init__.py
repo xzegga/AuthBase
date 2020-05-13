@@ -62,6 +62,6 @@ def password_reset(token):
 @bp.route('/logout', methods=['DELETE'])
 def logoutAccount():
   """
-    
+    invalidate token on user logout
   """ 
   return auth.invalid_token()

@@ -28,3 +28,9 @@ def confirm():
   registration email
   """   
   return users.activate()
+
+
+@route(bp, '/')
+def whoami():
+    """Returns the user instance of the currently authenticated user."""    
+    return users.all()
