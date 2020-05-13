@@ -1,26 +1,20 @@
 from ..core import db, guard
 from ..helpers import JsonSerializer
 
-
-class UserJsonSerializer(JsonSerializer):
-
-  __json_public__ = ['id', 'token']
-
-
-class Token(UserJsonSerializer, db.Model):
+class Token(db.Model):
   __tablename__ = 'bl_token'
 
   id = db.Column(db.Integer, primary_key=True)
   token = db.Column(db.String(250))
 
   @classmethod
-  def blacklist_jti(jti):
-    # token = guard.extract_jwt_token(jti)["jti"]
-    # guard.create(token)
-    pass
+  def blacklist_jti(cls, jti):
+    _me = cls()
+    _me.token = jti
+    db.session.add(_me)    
+    db.session.commit()
+    return cls
     
   @classmethod
-  def get_blacklisted(jti):
-    # token = guard.extract_jwt_token(jti)["jti"]   
-    # all_token = guard.all(token)
-    pass
+  def get_blacklisted(cls):
+    return cls.query.all()

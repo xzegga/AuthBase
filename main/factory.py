@@ -41,10 +41,11 @@ def create_app(package_name, package_path, settings_override=None,
       bl.init_app(app, Token)
 
       # Initialize the flask-praetorian instance for the app
-      guard.init_app(app, User, is_blacklisted)
+      guard.init_app(app, User, is_blacklisted = is_blacklisted)
 
       # Registre all blueprints in the package_name
       register_blueprints(app, package_name, package_path)
+
 
       # Apply middleware to support every HTTP method in old browsers
       app.wsgi_app = HTTPMethodOverrideMiddleware(app.wsgi_app)
