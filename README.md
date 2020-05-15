@@ -1,7 +1,7 @@
 # Base Auth 1.0
 
 
-InterpLinks is a Flask application to connect client of foreign language with interpreters on any language
+BaseAuth is a FullRest API Flask application that include role based user management with flask-preatorian.
 
 ## Development Environment
 
@@ -21,7 +21,7 @@ The following assumes you have all of the recommended tools listed above install
 
 #### 1. Clone the project:
 
-    $ git clone https://github.com/ait-sv/InterpLinks.git
+    $ git clone https://github.com/AiTSV/AuthBase.git
     $ cd InterpLinks
 
 #### 2. Create and initialize virtual environment for the project:
