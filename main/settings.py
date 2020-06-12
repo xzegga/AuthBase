@@ -17,8 +17,8 @@ class Config(object):
 
   PRAETORIAN_RESET_SENDER = os.environ.get('MAIL_USERNAME')
   PRAETORIAN_CONFIRMATION_SENDER = os.environ.get('MAIL_USERNAME')
-  PRAETORIAN_RESET_URI = 'https://www.translationLinks.com/reset-password'
-  PRAETORIAN_RESET_SUBJECT = "Reset password request for InterpTlinks"
+  PRAETORIAN_RESET_URI = 'https://www.yourdomain.com/reset-password'
+  PRAETORIAN_RESET_SUBJECT = "Reset password request for AppName"
 
   SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI')
   
@@ -39,8 +39,8 @@ class Config(object):
   SECURITY_CONFIRM_WITHIN = '5 days'
   SECURITY_SEND_REGISTER_EMAIL = False
   
-  FRONTED_URL = 'www.translationLinks.com'
-  COMPANY_LOGO = 'http://translationlinks.com/img/logo.png'
+  FRONTED_URL = 'www.yourdomain.com'
+  COMPANY_LOGO = 'http://www.yourdomain.com/path/logo.png'
 
 
 class ProductionConfig(Config):
