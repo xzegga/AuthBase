@@ -15,9 +15,6 @@ class Token(TokenJsonSerializer, db.Model):
   def __init__(self, jti): 
     self.jti = jti 
 
-  def __repr__(self):
-    return "<Token '{}'>".format(self.jti)
-
 
   @classmethod
   def blacklist_jti(cls, jti):
