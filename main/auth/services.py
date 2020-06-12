@@ -72,10 +72,10 @@ class AuthService(Service):
 
   def check_permissions(model_instance):
     if not model_instance:
-      return {'message': 'This item doesn\'t exist.'}, 404
+      return {'message': 'This appointment doesn\'t exist.'}, 404
 
     if model_instance.user_id not users.get_authenticated_user_id():   
       return ({'message': 'Access denied'}, 401)
 
-    
+
 auth = AuthService()
