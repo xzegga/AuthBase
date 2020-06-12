@@ -10,7 +10,7 @@ import importlib
 
 from flask import Blueprint
 from flask.json import JSONEncoder as BaseJSONEncoder
-
+import datetime
 
 def register_blueprints(app, package_name, package_path):
     """Register all Blueprint instances on the specified Flask application found
@@ -68,10 +68,17 @@ class JsonSerializer(object):
 
         rv = dict()
         for key in public:
-            rv[key] = getattr(self, key)
+            rv[key] = self.check_time_format(getattr(self, key))
         for key, modifier in modifiers.items():
             value = getattr(self, key)
             rv[key] = modifier(value, self)
         for key in hidden:
             rv.pop(key, None)
         return rv
+
+      
+    def check_time_format(self, field):
+      if isinstance(field, datetime.time):
+        return field.__str__()
+      else:
+        return field
